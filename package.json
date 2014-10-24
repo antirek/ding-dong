@@ -1,0 +1,25 @@
+{
+  "author": "Sergey Dmitriev <serge.dmitriev@gmail.com>",
+  "name": "ding-dong",
+  "description": "AGI (Asterisk Gateway Interface) for writing dialplan scripts",
+  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/antirek/ding-dong.git"
+  },
+  "main": "lib/",
+  "scripts": {
+    "test": "mocha -R tap"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "dependencies": {
+    "readable-stream": "*"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "expect.js": "*",
+    "memstream": "*"
+  }
+}
