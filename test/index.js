@@ -177,6 +177,19 @@ describe('Context', function() {
     });
   });
 
+  describe('record file', function() {
+    it('record', function() {
+      this.context.recordFile('test', 'wav', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('STREAM FILE "test" # "\n');
+    });
+
+    it('defaults to all digits', function() {
+      this.context.streamFile('test', function() {});
+      expect(this.context.sent.join('')).to.eql('STREAM FILE "test" "1234567890#*"\n');
+
+    });
+  });
+
   describe('waitForDigit', function() {
     it('sends with default timeout', function() {
       this.context.waitForDigit(function() {});

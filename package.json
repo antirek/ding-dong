@@ -2,7 +2,7 @@
   "author": "Sergey Dmitriev <serge.dmitriev@gmail.com>",
   "name": "ding-dong",
   "description": "AGI (Asterisk Gateway Interface) for writing dialplan scripts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/antirek/ding-dong.git"
