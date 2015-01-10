@@ -184,6 +184,34 @@ describe('Context', function() {
     });    
   });
 
+  describe('say number', function() {
+    it('say number', function() {
+      this.context.sayNumber('1234', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('SAY NUMBER 1234 "#"\n');
+    });    
+  });
+
+  describe('say phonetic', function() {
+    it('say phonetic', function() {
+      this.context.sayPhonetic('1234ABCD', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('SAY PHONETIC 1234ABCD "#"\n');
+    });    
+  });
+
+  describe('context dial', function() {
+    it('context dial', function() {
+      this.context.dial('123', 10, 'A', function() {});
+      expect(this.context.sent.join('')).to.eql('EXEC Dial 123,10,A\n');
+    });    
+  });
+
+  describe('say digits', function() {
+    it('say digits', function() {
+      this.context.sayDigits('1234', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('SAY DIGITS 1234 "#"\n');
+    });    
+  });
+
   describe('waitForDigit', function() {
     it('sends with default timeout', function() {
       this.context.waitForDigit(function() {});
@@ -200,6 +228,13 @@ describe('Context', function() {
     it('sends "HANGUP\\n"', function() {
       this.context.hangup();
       expect(this.context.sent.join('')).to.eql('HANGUP\n');
+    });
+  });
+
+  describe('answer', function() {
+    it('sends "ANSWER\\n"', function() {
+      this.context.answer();
+      expect(this.context.sent.join('')).to.eql('ANSWER\n');
     });
   });
 
