@@ -9,7 +9,7 @@ module.exports = function(grunt){
                     'reporter': 'mocha-istanbul'
                 }
             }
-        }       
+        }
     });
 
     grunt.loadNpmTasks('grunt-mocha-istanbul');
