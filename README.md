@@ -1,22 +1,22 @@
-# node-agi
+# ding-dong
 
-Client for asterisk AGI protocol.  Parses incomming messages into events.  Dispatches AGI commands and their responses from asterisk.  Most commonly used as a low level client for a fAGI server.
-
-## note: still a work in progress
+Create AGI server with ding-dong. Use with Asterisk for fast telephony apps. (Fork of node-agi)[http://github.com/brianc/node-agi]
 
 ## install
+
 ```
-npm install agi
+npm install ding-dong [--save]
 ```
 
 ## API
 
-### agi.createServer([listener])
+### ding.createServer([listener])
 
 Returns a new net.Server instance.  The _listener_ will be called on a new agi connection with a single __Context__ object as described below.
 
 ```js
-require('agi').createServer(function(context) {
+var ding = require('ding-dong');
+ding.createServer(function(context) {
   //context is a new instance of agi.Context for each new agi session
   //immedately after asterisk connects to the node process
   context.on('variables', function(vars) {
@@ -24,8 +24,14 @@ require('agi').createServer(function(context) {
   });
 }).listen(3000);
 ```
+### Add to Asterisk extensions.conf
+`````
+[default]
+exten = > 1000,1,AGI(agi://localhost:3000)
+`````
 
-### new agi.Context(stream)
+
+### new ding.Context(stream)
 
 Constructor to create a new instance of a context.  Supply a readable and writable stream to the constructor.  Commonly _stream_ will be a `net.Socket` instance.
 
@@ -34,8 +40,8 @@ Constructor to create a new instance of a context.  Supply a readable and writab
 Dispatches the `EXEC` AGI command to asterisk with supplied command name and arguments.  _callback_ is called with the result of the dispatch.
 
 ```js
-context.exec('ANSWER', function(err, res) {
-  //the channel is now answered
+context.exec('Dial', opt1, opt2, .., optN, function(err, res) {
+  //the channel call app Dial with options
 });
 
 context.exec('RecieveFax', '/tmp/myfax.tif', function(err, res) {
@@ -43,7 +49,7 @@ context.exec('RecieveFax', '/tmp/myfax.tif', function(err, res) {
 });
 ```
 
-### context.hangup([callbac])
+### context.hangup([callback])
 
 Dispatches the 'HANGUP' AGI command to asterisk.  Does __not__ close the sockets automatically.  _callback_ is called with the result of the dispatch.
 
@@ -52,3 +58,12 @@ context.hangup(function(err, res) {
   //the channel has now been hungup.
 });
 ```
+
+
+## Projects
+
+(Voicer)[http://github.com/antirek/voicer] - AGI yandex voice recognizer for Asterisk
+
+## Links
+
+(Asterisk AGI)[https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+AGI+Commands]
