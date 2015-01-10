@@ -1,6 +1,6 @@
 # ding-dong
 
-Create AGI server with ding-dong. Use with Asterisk for fast telephony apps. (Fork of node-agi)[http://github.com/brianc/node-agi]
+Create AGI server with ding-dong. Use with Asterisk for fast telephony apps. [Fork of node-agi](http://github.com/brianc/node-agi)
 
 ## install
 
@@ -17,8 +17,6 @@ Returns a new net.Server instance.  The _listener_ will be called on a new agi c
 ```js
 var ding = require('ding-dong');
 ding.createServer(function(context) {
-  //context is a new instance of agi.Context for each new agi session
-  //immedately after asterisk connects to the node process
   context.on('variables', function(vars) {
     console.log('received new call from: ' + vars.agi_callerid + ' with uniqueid: ' + vars.agi_uniqueid);
   });
@@ -62,8 +60,8 @@ context.hangup(function(err, res) {
 
 ## Projects
 
-(Voicer)[http://github.com/antirek/voicer] - AGI yandex voice recognizer for Asterisk
+[Voicer](http://github.com/antirek/voicer) - AGI yandex voice recognizer for Asterisk
 
 ## Links
 
-(Asterisk AGI)[https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+AGI+Commands]
+[Asterisk AGI](https://wiki.asterisk.org/wiki/display/AST/Asterisk+13+AGI+Commands)
