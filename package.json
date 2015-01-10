@@ -18,8 +18,9 @@
     "readable-stream": "*"
   },
   "devDependencies": {
-    "mocha": "*",
     "expect.js": "*",
-    "memstream": "*"
+    "memorystream": "^0.3.0",
+    "memstream": "*",
+    "mocha": "*"
   }
 }

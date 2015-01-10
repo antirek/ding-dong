@@ -1,4 +1,4 @@
-var MemoryStream = require('memstream').MemoryStream;
+var MemoryStream = require('memorystream');
 var agi = require('./../lib')
 var expect = require('expect.js');
 var Context = agi.Context;
@@ -179,15 +179,9 @@ describe('Context', function() {
 
   describe('record file', function() {
     it('record', function() {
-      this.context.recordFile('test', 'wav', '#', function() {});
-      expect(this.context.sent.join('')).to.eql('STREAM FILE "test" # "\n');
-    });
-
-    it('defaults to all digits', function() {
-      this.context.streamFile('test', function() {});
-      expect(this.context.sent.join('')).to.eql('STREAM FILE "test" "1234567890#*"\n');
-
-    });
+      this.context.recordFile('test', 'wav', '#', 10, function() {});
+      expect(this.context.sent.join('')).to.eql('RECORD FILE "test" wav # 10000 0 1 2\n');
+    });    
   });
 
   describe('waitForDigit', function() {
