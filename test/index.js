@@ -146,6 +146,13 @@ describe('Context', function() {
     });
   });
 
+  describe('setVariable', function() {
+    it('sends correct command', function() {
+      this.context.setVariable('test', 'test');
+      expect(this.context.sent.join('')).to.eql('SET VARIABLE test test\n');
+    });
+  });
+
   describe('getVariable', function() {
     it('sends correct command', function() {
       this.context.getVariable('test');
