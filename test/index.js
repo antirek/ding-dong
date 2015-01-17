@@ -153,6 +153,20 @@ describe('Context', function() {
     });
   });
 
+  describe('channelStatus', function() {
+    it('sends correct command', function() {
+      this.context.channelStatus('test');
+      expect(this.context.sent.join('')).to.eql('CHANNEL STATUS test\n');
+    });
+  });
+
+  describe('getFullVariable', function() {
+    it('sends correct command', function() {
+      this.context.getFullVariable('test', 'test');
+      expect(this.context.sent.join('')).to.eql('GET FULL VARIABLE test test\n');
+    });
+  });
+
   describe('getVariable', function() {
     it('sends correct command', function() {
       this.context.getVariable('test');
@@ -235,6 +249,13 @@ describe('Context', function() {
     it('sends "HANGUP\\n"', function() {
       this.context.hangup();
       expect(this.context.sent.join('')).to.eql('HANGUP\n');
+    });
+  });
+
+  describe('asyncAGIBreak', function() {
+    it('sends "ASYNCAGI BREAK\\n"', function() {
+      this.context.asyncAGIBreak();
+      expect(this.context.sent.join('')).to.eql('ASYNCAGI BREAK\n');
     });
   });
 
