@@ -153,6 +153,48 @@ describe('Context', function() {
     });
   });
 
+  describe('setAutoHangup', function() {
+    it('sends correct command', function() {
+      this.context.setAutoHangup(10);
+      expect(this.context.sent.join('')).to.eql('SET AUTOHANGUP 10\n');
+    });
+  });
+
+  describe('setCallerID', function() {
+    it('sends correct command', function() {
+      this.context.setCallerID('246');
+      expect(this.context.sent.join('')).to.eql('SET CALLERID 246\n');
+    });
+  });
+
+  describe('setContext', function() {
+    it('sends correct command', function() {
+      this.context.setContext('outbound');
+      expect(this.context.sent.join('')).to.eql('SET CONTEXT outbound\n');
+    });
+  });
+
+  describe('setExtension', function() {
+    it('sends correct command', function() {
+      this.context.setExtension('245');
+      expect(this.context.sent.join('')).to.eql('SET EXTENSION 245\n');
+    });
+  });
+
+  describe('setPriority', function() {
+    it('sends correct command', function() {
+      this.context.setPriority('2');
+      expect(this.context.sent.join('')).to.eql('SET PRIORITY 2\n');
+    });
+  });
+
+  describe('setMusic', function() {
+    it('sends correct command', function() {
+      this.context.setMusic('default');
+      expect(this.context.sent.join('')).to.eql('SET MUSIC default\n');
+    });
+  });
+
   describe('channelStatus', function() {
     it('sends correct command', function() {
       this.context.channelStatus('test');
@@ -186,7 +228,7 @@ describe('Context', function() {
   });
 
   describe('stream file', function() {
-    it('sends', function() {
+    it('sends', function () {
       this.context.streamFile('test', '1234567890#*', function() {});
       expect(this.context.sent.join('')).to.eql('STREAM FILE "test" "1234567890#*"\n');
     });
@@ -199,21 +241,49 @@ describe('Context', function() {
   });
 
   describe('record file', function() {
-    it('record', function() {
+    it('record', function () {
       this.context.recordFile('test', 'wav', '#', 10, function() {});
       expect(this.context.sent.join('')).to.eql('RECORD FILE "test" wav # 10000 0 1 2\n');
     });    
   });
 
   describe('say number', function() {
-    it('say number', function() {
+    it('say number', function () {
       this.context.sayNumber('1234', '#', function() {});
       expect(this.context.sent.join('')).to.eql('SAY NUMBER 1234 "#"\n');
     });    
   });
 
+  describe('say alpha', function() {
+    it('say alpha', function () {
+      this.context.sayAlpha('1234', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('SAY ALPHA 1234 "#"\n');
+    });    
+  });
+
+  describe('say date', function() {
+    it('say date', function () {
+      this.context.sayDate('1234', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('SAY DATE 1234 "#"\n');
+    });    
+  });
+
+  describe('say time', function() {
+    it('say time', function () {
+      this.context.sayTime('1234', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('SAY TIME 1234 "#"\n');
+    });    
+  });
+
+  describe('say datetime', function() {
+    it('say datetime', function () {
+      this.context.sayDateTime('1234', '#', 'Y', 'DST',function() {});
+      expect(this.context.sent.join('')).to.eql('SAY DATETIME 1234 "#" Y DST\n');
+    });    
+  });
+
   describe('say phonetic', function() {
-    it('say phonetic', function() {
+    it('say phonetic', function () {
       this.context.sayPhonetic('1234ABCD', '#', function() {});
       expect(this.context.sent.join('')).to.eql('SAY PHONETIC 1234ABCD "#"\n');
     });    
@@ -227,13 +297,13 @@ describe('Context', function() {
   });
 
   describe('say digits', function() {
-    it('say digits', function() {
+    it('say digits', function () {
       this.context.sayDigits('1234', '#', function() {});
       expect(this.context.sent.join('')).to.eql('SAY DIGITS 1234 "#"\n');
     });    
   });
 
-  describe('waitForDigit', function() {
+  describe('waitForDigit', function () {
     it('sends with default timeout', function() {
       this.context.waitForDigit(function() {});
       expect(this.context.sent.join('')).to.eql('WAIT FOR DIGIT 5000\n');
