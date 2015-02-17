@@ -209,6 +209,20 @@ describe('Context', function() {
     });
   });
 
+  describe('getData', function() {
+    it('sends correct command', function() {
+      this.context.getData('test', 10, 5);
+      expect(this.context.sent.join('')).to.eql('GET DATA test 10 5\n');
+    });
+  });
+
+  describe('getOption', function() {
+    it('sends correct command', function() {
+      this.context.getOption('test', '#', 5);
+      expect(this.context.sent.join('')).to.eql('GET OPTION test "#" 5\n');
+    });
+  });
+
   describe('getVariable', function() {
     it('sends correct command', function() {
       this.context.getVariable('test');
@@ -224,6 +238,20 @@ describe('Context', function() {
       process.nextTick(function() {
         self.context.stream.write('200 result=1 (abcd)\n');
       })
+    });
+  });
+
+  describe('receiveChar', function() {
+    it('sends correct command', function() {
+      this.context.receiveChar(5);
+      expect(this.context.sent.join('')).to.eql('RECEIVE CHAR 5\n');
+    });
+  });
+
+  describe('receiveText', function() {
+    it('sends correct command', function() {
+      this.context.receiveText(5);
+      expect(this.context.sent.join('')).to.eql('RECEIVE TEXT 5\n');
     });
   });
 
@@ -279,7 +307,7 @@ describe('Context', function() {
     it('say datetime', function () {
       this.context.sayDateTime('1234', '#', 'Y', 'DST',function() {});
       expect(this.context.sent.join('')).to.eql('SAY DATETIME 1234 "#" Y DST\n');
-    });    
+    });
   });
 
   describe('say phonetic', function() {
@@ -300,6 +328,20 @@ describe('Context', function() {
     it('say digits', function () {
       this.context.sayDigits('1234', '#', function() {});
       expect(this.context.sent.join('')).to.eql('SAY DIGITS 1234 "#"\n');
+    });    
+  });
+
+  describe('send image', function() {
+    it('send image', function () {
+      this.context.sendImage('1234', function() {});
+      expect(this.context.sent.join('')).to.eql('SEND IMAGE 1234\n');
+    });    
+  });
+
+  describe('send text', function() {
+    it('send text', function () {
+      this.context.sendText('1234', function() {});
+      expect(this.context.sent.join('')).to.eql('SEND TEXT "1234"\n');
     });    
   });
 
@@ -333,6 +375,34 @@ describe('Context', function() {
     it('sends "ANSWER\\n"', function() {
       this.context.answer();
       expect(this.context.sent.join('')).to.eql('ANSWER\n');
+    });
+  });
+
+  describe('verbose', function() {
+    it('sends correct command', function() {
+      this.context.verbose("good", 2);
+      expect(this.context.sent.join('')).to.eql('VERBOSE "good" 2\n');
+    });
+  });
+
+  describe('tddMode', function() {
+    it('sends correct command', function() {
+      this.context.tddMode("on");
+      expect(this.context.sent.join('')).to.eql('TDD MODE on\n');
+    });
+  });
+
+  describe('noop', function() {
+    it('sends correct command', function() {
+      this.context.noop();
+      expect(this.context.sent.join('')).to.eql('NOOP\n');
+    });
+  });
+
+  describe('gosub', function() {
+    it('sends correct command', function() {
+      this.context.gosub('out','241','6','do');
+      expect(this.context.sent.join('')).to.eql('GOSUB out 241 6 do\n');
     });
   });
 
