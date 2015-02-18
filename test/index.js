@@ -146,6 +146,90 @@ describe('Context', function() {
     });
   });
 
+  describe('databaseDel', function() {
+    it('sends correct command', function() {
+      this.context.databaseDel('family', 'test');
+      expect(this.context.sent.join('')).to.eql('DATABASE DEL family test\n');
+    });
+  });
+
+  describe('databaseDelTree', function() {
+    it('sends correct command', function() {
+      this.context.databaseDelTree('family', 'test');
+      expect(this.context.sent.join('')).to.eql('DATABASE DELTREE family test\n');
+    });
+  });
+
+  describe('databaseGet', function() {
+    it('sends correct command', function() {
+      this.context.databaseGet('family', 'test');
+      expect(this.context.sent.join('')).to.eql('DATABASE GET family test\n');
+    });
+  });
+
+  describe('databasePut', function() {
+    it('sends correct command', function() {
+      this.context.databasePut('family', 'test', 'value');
+      expect(this.context.sent.join('')).to.eql('DATABASE PUT family test value\n');
+    });
+  });
+
+  describe('speechCreate', function() {
+    it('sends correct command', function() {
+      this.context.speechCreate('engine');
+      expect(this.context.sent.join('')).to.eql('SPEECH CREATE engine\n');
+    });
+  });
+
+  describe('speechDestroy', function() {
+    it('sends correct command', function() {
+      this.context.speechDestroy();
+      expect(this.context.sent.join('')).to.eql('SPEECH DESTROY\n');
+    });
+  });
+
+  describe('speechActivateGrammar', function() {
+    it('sends correct command', function() {
+      this.context.speechActivateGrammar('name');
+      expect(this.context.sent.join('')).to.eql('SPEECH ACTIVATE GRAMMAR name\n');
+    });
+  });
+
+  describe('speechDeactivateGrammar', function() {
+    it('sends correct command', function() {
+      this.context.speechDeactivateGrammar('name');
+      expect(this.context.sent.join('')).to.eql('SPEECH DEACTIVATE GRAMMAR name\n');
+    });
+  });
+
+  describe('speechLoadGrammar', function() {
+    it('sends correct command', function() {
+      this.context.speechLoadGrammar('name', 'path');
+      expect(this.context.sent.join('')).to.eql('SPEECH LOAD GRAMMAR name path\n');
+    });
+  });
+
+  describe('speechUnloadGrammar', function() {
+    it('sends correct command', function() {
+      this.context.speechUnloadGrammar('name');
+      expect(this.context.sent.join('')).to.eql('SPEECH UNLOAD GRAMMAR name\n');
+    });
+  });
+
+  describe('speechSet', function() {
+    it('sends correct command', function() {
+      this.context.speechSet('name', 'value');
+      expect(this.context.sent.join('')).to.eql('SPEECH SET name value\n');
+    });
+  });
+
+  describe('speechRecognize', function() {
+    it('sends correct command', function() {
+      this.context.speechRecognize('prompt', 'timeout', 'offset');
+      expect(this.context.sent.join('')).to.eql('SPEECH RECOGNIZE prompt timeout offset\n');
+    });
+  });
+
   describe('setVariable', function() {
     it('sends correct command', function() {
       this.context.setVariable('test', 'test');
