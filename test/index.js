@@ -354,7 +354,7 @@ describe('Context', function() {
 
   describe('record file', function() {
     it('record', function () {
-      this.context.recordFile('test', 'wav', '#', 10, function() {});
+      this.context.recordFile('test', 'wav', '#', 10, 0, 1, 2, function() {});
       expect(this.context.sent.join('')).to.eql('RECORD FILE "test" wav # 10000 0 1 2\n');
     });    
   });
