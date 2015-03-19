@@ -146,10 +146,136 @@ describe('Context', function() {
     });
   });
 
+  describe('databaseDel', function() {
+    it('sends correct command', function() {
+      this.context.databaseDel('family', 'test');
+      expect(this.context.sent.join('')).to.eql('DATABASE DEL family test\n');
+    });
+  });
+
+  describe('databaseDelTree', function() {
+    it('sends correct command', function() {
+      this.context.databaseDelTree('family', 'test');
+      expect(this.context.sent.join('')).to.eql('DATABASE DELTREE family test\n');
+    });
+  });
+
+  describe('databaseGet', function() {
+    it('sends correct command', function() {
+      this.context.databaseGet('family', 'test');
+      expect(this.context.sent.join('')).to.eql('DATABASE GET family test\n');
+    });
+  });
+
+  describe('databasePut', function() {
+    it('sends correct command', function() {
+      this.context.databasePut('family', 'test', 'value');
+      expect(this.context.sent.join('')).to.eql('DATABASE PUT family test value\n');
+    });
+  });
+
+  describe('speechCreate', function() {
+    it('sends correct command', function() {
+      this.context.speechCreate('engine');
+      expect(this.context.sent.join('')).to.eql('SPEECH CREATE engine\n');
+    });
+  });
+
+  describe('speechDestroy', function() {
+    it('sends correct command', function() {
+      this.context.speechDestroy();
+      expect(this.context.sent.join('')).to.eql('SPEECH DESTROY\n');
+    });
+  });
+
+  describe('speechActivateGrammar', function() {
+    it('sends correct command', function() {
+      this.context.speechActivateGrammar('name');
+      expect(this.context.sent.join('')).to.eql('SPEECH ACTIVATE GRAMMAR name\n');
+    });
+  });
+
+  describe('speechDeactivateGrammar', function() {
+    it('sends correct command', function() {
+      this.context.speechDeactivateGrammar('name');
+      expect(this.context.sent.join('')).to.eql('SPEECH DEACTIVATE GRAMMAR name\n');
+    });
+  });
+
+  describe('speechLoadGrammar', function() {
+    it('sends correct command', function() {
+      this.context.speechLoadGrammar('name', 'path');
+      expect(this.context.sent.join('')).to.eql('SPEECH LOAD GRAMMAR name path\n');
+    });
+  });
+
+  describe('speechUnloadGrammar', function() {
+    it('sends correct command', function() {
+      this.context.speechUnloadGrammar('name');
+      expect(this.context.sent.join('')).to.eql('SPEECH UNLOAD GRAMMAR name\n');
+    });
+  });
+
+  describe('speechSet', function() {
+    it('sends correct command', function() {
+      this.context.speechSet('name', 'value');
+      expect(this.context.sent.join('')).to.eql('SPEECH SET name value\n');
+    });
+  });
+
+  describe('speechRecognize', function() {
+    it('sends correct command', function() {
+      this.context.speechRecognize('prompt', 'timeout', 'offset');
+      expect(this.context.sent.join('')).to.eql('SPEECH RECOGNIZE prompt timeout offset\n');
+    });
+  });
+
   describe('setVariable', function() {
     it('sends correct command', function() {
       this.context.setVariable('test', 'test');
       expect(this.context.sent.join('')).to.eql('SET VARIABLE test test\n');
+    });
+  });
+
+  describe('setAutoHangup', function() {
+    it('sends correct command', function() {
+      this.context.setAutoHangup(10);
+      expect(this.context.sent.join('')).to.eql('SET AUTOHANGUP 10\n');
+    });
+  });
+
+  describe('setCallerID', function() {
+    it('sends correct command', function() {
+      this.context.setCallerID('246');
+      expect(this.context.sent.join('')).to.eql('SET CALLERID 246\n');
+    });
+  });
+
+  describe('setContext', function() {
+    it('sends correct command', function() {
+      this.context.setContext('outbound');
+      expect(this.context.sent.join('')).to.eql('SET CONTEXT outbound\n');
+    });
+  });
+
+  describe('setExtension', function() {
+    it('sends correct command', function() {
+      this.context.setExtension('245');
+      expect(this.context.sent.join('')).to.eql('SET EXTENSION 245\n');
+    });
+  });
+
+  describe('setPriority', function() {
+    it('sends correct command', function() {
+      this.context.setPriority('2');
+      expect(this.context.sent.join('')).to.eql('SET PRIORITY 2\n');
+    });
+  });
+
+  describe('setMusic', function() {
+    it('sends correct command', function() {
+      this.context.setMusic('default');
+      expect(this.context.sent.join('')).to.eql('SET MUSIC default\n');
     });
   });
 
@@ -164,6 +290,20 @@ describe('Context', function() {
     it('sends correct command', function() {
       this.context.getFullVariable('test', 'test');
       expect(this.context.sent.join('')).to.eql('GET FULL VARIABLE test test\n');
+    });
+  });
+
+  describe('getData', function() {
+    it('sends correct command', function() {
+      this.context.getData('test', 10, 5);
+      expect(this.context.sent.join('')).to.eql('GET DATA test 10 5\n');
+    });
+  });
+
+  describe('getOption', function() {
+    it('sends correct command', function() {
+      this.context.getOption('test', '#', 5);
+      expect(this.context.sent.join('')).to.eql('GET OPTION test "#" 5\n');
     });
   });
 
@@ -185,8 +325,22 @@ describe('Context', function() {
     });
   });
 
+  describe('receiveChar', function() {
+    it('sends correct command', function() {
+      this.context.receiveChar(5);
+      expect(this.context.sent.join('')).to.eql('RECEIVE CHAR 5\n');
+    });
+  });
+
+  describe('receiveText', function() {
+    it('sends correct command', function() {
+      this.context.receiveText(5);
+      expect(this.context.sent.join('')).to.eql('RECEIVE TEXT 5\n');
+    });
+  });
+
   describe('stream file', function() {
-    it('sends', function() {
+    it('sends', function () {
       this.context.streamFile('test', '1234567890#*', function() {});
       expect(this.context.sent.join('')).to.eql('STREAM FILE "test" "1234567890#*"\n');
     });
@@ -199,21 +353,49 @@ describe('Context', function() {
   });
 
   describe('record file', function() {
-    it('record', function() {
+    it('record', function () {
       this.context.recordFile('test', 'wav', '#', 10, function() {});
       expect(this.context.sent.join('')).to.eql('RECORD FILE "test" wav # 10000 0 1 2\n');
     });    
   });
 
   describe('say number', function() {
-    it('say number', function() {
+    it('say number', function () {
       this.context.sayNumber('1234', '#', function() {});
       expect(this.context.sent.join('')).to.eql('SAY NUMBER 1234 "#"\n');
     });    
   });
 
+  describe('say alpha', function() {
+    it('say alpha', function () {
+      this.context.sayAlpha('1234', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('SAY ALPHA 1234 "#"\n');
+    });    
+  });
+
+  describe('say date', function() {
+    it('say date', function () {
+      this.context.sayDate('1234', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('SAY DATE 1234 "#"\n');
+    });    
+  });
+
+  describe('say time', function() {
+    it('say time', function () {
+      this.context.sayTime('1234', '#', function() {});
+      expect(this.context.sent.join('')).to.eql('SAY TIME 1234 "#"\n');
+    });    
+  });
+
+  describe('say datetime', function() {
+    it('say datetime', function () {
+      this.context.sayDateTime('1234', '#', 'Y', 'DST',function() {});
+      expect(this.context.sent.join('')).to.eql('SAY DATETIME 1234 "#" Y DST\n');
+    });
+  });
+
   describe('say phonetic', function() {
-    it('say phonetic', function() {
+    it('say phonetic', function () {
       this.context.sayPhonetic('1234ABCD', '#', function() {});
       expect(this.context.sent.join('')).to.eql('SAY PHONETIC 1234ABCD "#"\n');
     });    
@@ -227,13 +409,27 @@ describe('Context', function() {
   });
 
   describe('say digits', function() {
-    it('say digits', function() {
+    it('say digits', function () {
       this.context.sayDigits('1234', '#', function() {});
       expect(this.context.sent.join('')).to.eql('SAY DIGITS 1234 "#"\n');
     });    
   });
 
-  describe('waitForDigit', function() {
+  describe('send image', function() {
+    it('send image', function () {
+      this.context.sendImage('1234', function() {});
+      expect(this.context.sent.join('')).to.eql('SEND IMAGE 1234\n');
+    });    
+  });
+
+  describe('send text', function() {
+    it('send text', function () {
+      this.context.sendText('1234', function() {});
+      expect(this.context.sent.join('')).to.eql('SEND TEXT "1234"\n');
+    });    
+  });
+
+  describe('waitForDigit', function () {
     it('sends with default timeout', function() {
       this.context.waitForDigit(function() {});
       expect(this.context.sent.join('')).to.eql('WAIT FOR DIGIT 5000\n');
@@ -263,6 +459,34 @@ describe('Context', function() {
     it('sends "ANSWER\\n"', function() {
       this.context.answer();
       expect(this.context.sent.join('')).to.eql('ANSWER\n');
+    });
+  });
+
+  describe('verbose', function() {
+    it('sends correct command', function() {
+      this.context.verbose("good", 2);
+      expect(this.context.sent.join('')).to.eql('VERBOSE "good" 2\n');
+    });
+  });
+
+  describe('tddMode', function() {
+    it('sends correct command', function() {
+      this.context.tddMode("on");
+      expect(this.context.sent.join('')).to.eql('TDD MODE on\n');
+    });
+  });
+
+  describe('noop', function() {
+    it('sends correct command', function() {
+      this.context.noop();
+      expect(this.context.sent.join('')).to.eql('NOOP\n');
+    });
+  });
+
+  describe('gosub', function() {
+    it('sends correct command', function() {
+      this.context.gosub('out','241','6','do');
+      expect(this.context.sent.join('')).to.eql('GOSUB out 241 6 do\n');
     });
   });
 
