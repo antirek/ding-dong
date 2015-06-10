@@ -96,9 +96,10 @@ describe('Context', function() {
           context.stream.write('\n');
         });
 
-        context.exec('test', 'boom', function(err, res) {
-          done(err);
+        context.exec('test', 'boom').then(function(){
+          done();
         });
+        
       });
     });
 
@@ -111,18 +112,20 @@ describe('Context', function() {
           context.stream.write('200 result=0\n');
         });
 
-        context.exec('test', function(err, res) {
-          expect(res.result).to.eql('0');
-
-          context.exec('test 2', function(err, res) {
+        context.exec('test')
+          .then(function (res) {
+            expect(res.result).to.eql('0');
+            return context.exec('test 2');
+          })
+          .then(function (res) {
             expect(res.result).to.eql('1');
             done();
           });
           
-          process.nextTick(function() {
-            context.stream.write('200 result=1\n');
-          });
+        process.nextTick(function() {
+          context.stream.write('200 result=1\n');
         });
+        
       });
     });
   });
