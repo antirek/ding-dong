@@ -4,6 +4,18 @@
 
 Create AGI server with ding-dong. Use with Asterisk for fast telephony apps. [Fork of node-agi](http://github.com/brianc/node-agi)
 
+
+Use ding-dong
+=============
+
+[voicer](http://github.com/antirek/voicer) - AGI yandex voice recognizer for Asterisk
+
+[agi-number-archer](http://github.com/antirek/agi-number-archer) - AGI server for find region code of phone number (Russia)
+
+[lcr-finder](http://github.com/antirek/lcr-finder) - least cost router for Asterisk
+
+
+
 ## Install
 
 ```
@@ -71,17 +83,6 @@ context.hangup()
     //do something
 });
 ```
-
-
-Use ding-dong
-=============
-
-[voicer](http://github.com/antirek/voicer) - AGI yandex voice recognizer for Asterisk
-
-[agi-number-archer](http://github.com/antirek/agi-number-archer) - AGI server for find region code of phone number (Russia)
-
-[lcr-finder](http://github.com/antirek/lcr-finder) - least cost router for Asterisk
-
 
 ## Links
 
