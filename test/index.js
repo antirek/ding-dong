@@ -311,18 +311,7 @@ describe('Context', function() {
     it('sends correct command', function() {
       this.context.getVariable('test');
       expect(this.context.sent.join('')).to.eql('GET VARIABLE test\n');
-    });
-
-    it('gets result', function(done) {
-      this.context.getVariable('test', function(err, res) {
-        expect(res.result).eql('1 (abcd)');
-        done();
-      });
-      var self = this;
-      process.nextTick(function() {
-        self.context.stream.write('200 result=1 (abcd)\n');
-      })
-    });
+    });    
   });
 
   describe('receiveChar', function() {
@@ -343,13 +332,7 @@ describe('Context', function() {
     it('sends', function () {
       this.context.streamFile('test', '1234567890#*', function() {});
       expect(this.context.sent.join('')).to.eql('STREAM FILE "test" "1234567890#*"\n');
-    });
-
-    it('defaults to all digits', function() {
-      this.context.streamFile('test', function() {});
-      expect(this.context.sent.join('')).to.eql('STREAM FILE "test" "1234567890#*"\n');
-
-    });
+    });    
   });
 
   describe('record file', function() {
@@ -424,14 +407,14 @@ describe('Context', function() {
 
   describe('send text', function() {
     it('send text', function () {
-      this.context.sendText('1234', function() {});
+      this.context.sendText('1234');
       expect(this.context.sent.join('')).to.eql('SEND TEXT "1234"\n');
     });    
   });
 
   describe('waitForDigit', function () {
     it('sends with default timeout', function() {
-      this.context.waitForDigit(function() {});
+      this.context.waitForDigit();
       expect(this.context.sent.join('')).to.eql('WAIT FOR DIGIT 5000\n');
     });
 
