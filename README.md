@@ -61,12 +61,15 @@ context.exec('RecieveFax', '/tmp/myfax.tif')
 });
 ```
 
-### context.hangup([callback])
+### context.hangup()
 
 Dispatches the 'HANGUP' AGI command to asterisk.  Does __not__ close the sockets automatically.  _callback_ is called with the result of the dispatch.
 
 ```js
-context.hangup();
+context.hangup()
+.then(function(){
+    //do something
+});
 ```
 
 
@@ -77,7 +80,7 @@ Use ding-dong
 
 [agi-number-archer](http://github.com/antirek/agi-number-archer) - AGI server for find region code of phone number (Russia)
 
-[lcr-finder](http://github.com/antirek/voicer) - least cost router for Asterisk
+[lcr-finder](http://github.com/antirek/lcr-finder) - least cost router for Asterisk
 
 
 ## Links
