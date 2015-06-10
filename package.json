@@ -15,6 +15,7 @@
     "node": ">=0.8.0"
   },
   "dependencies": {
+    "q": "^1.4.1",
     "readable-stream": "*"
   },
   "devDependencies": {
@@ -22,7 +23,7 @@
     "grunt": "^0.4.5",
     "grunt-mocha-istanbul": "^2.2.0",
     "istanbul": "^0.3.5",
-    "memorystream": "^0.3.0",    
+    "memorystream": "^0.3.0",
     "mocha": "*",
     "mocha-istanbul": "^0.2.0"
   }
