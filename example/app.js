@@ -1,4 +1,4 @@
-var AGIServer = require('./lib/index');
+var AGIServer = require('./../lib/index');
 
 var handler = function (context) {
     context.onEvent('variables')

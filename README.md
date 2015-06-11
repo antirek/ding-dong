@@ -20,24 +20,32 @@ Use ding-dong
 
 ```
 npm install ding-dong [--save]
+
 ```
 
-## API
 
-### ding.createServer([listener])
+## Usage
 
-Returns a new net.Server instance.  The _listener_ will be called on a new agi connection with a single __Context__ object as described below.
+### Write app.js and run it
 
 `````
-var ding = require('ding-dong');
+var AGIServer = require('ding-dong');
 
-ding.createServer(function(context) {
-  context.onEvent('variables')
-    .then(function(vars) {
-      console.log('received new call from: ' + vars.agi_callerid + ' with uniqueid: ' + vars.agi_uniqueid);
-    })
-    .fail(console.log);
-}).listen(3000);
+var handler = function (context) {
+    context.onEvent('variables')
+        .then(function (vars) {
+            return context.streamFile('beep');
+        })
+        .then(function (result) {
+            return context.setVariable('RECOGNITION_RESULT', 'I\'m your father, Luc');
+        })
+        .then(function (result) {       
+            return context.end();
+        });
+};
+
+var agi = new AGIServer(handler);
+agi.start(3000);
 
 `````
 
@@ -48,13 +56,14 @@ ding.createServer(function(context) {
 exten = > 1000,1,AGI(agi://localhost:3000)
 `````
 
+### And call to 1000 and view asterisk output.
+
+
+
+
+## API
 
 attention: using javascript promises
-
-
-### new ding.Context(stream)
-
-Constructor to create a new instance of a context.  Supply a readable and writable stream to the constructor.  Commonly _stream_ will be a `net.Socket` instance.
 
 
 ### context.exec(command, [args])
