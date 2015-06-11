@@ -8,7 +8,7 @@ Create AGI server with ding-dong. Use with Asterisk for fast telephony apps. [Fo
 Use ding-dong
 =============
 
-[voicer](http://github.com/antirek/voicer) - AGI yandex voice recognizer for Asterisk
+[voicer](http://github.com/antirek/voicer) - AGI voice recognizer for Asterisk (use Yandex and Google speech recognizers)
 
 [agi-number-archer](http://github.com/antirek/agi-number-archer) - AGI server for find region code of phone number (Russia)
 
