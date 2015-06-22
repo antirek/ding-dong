@@ -56,42 +56,13 @@ agi.start(3000);
 exten = > 1000,1,AGI(agi://localhost:3000)
 `````
 
-### And call to 1000 and view asterisk output.
+### And call to 1000 and view asterisk output. Profit!
 
 
+## API 
 
+see [API.md](API.md)
 
-## API
-
-attention: using javascript promises
-
-
-### context.exec(command, [args])
-
-Dispatches the `EXEC` AGI command to asterisk with supplied command name and arguments.  _callback_ is called with the result of the dispatch.
-
-```js
-context.exec('Dial', opt1, opt2, .., optN)
-.then(function(result)
-  //the channel call app Dial with options
-});
-
-context.exec('RecieveFax', '/tmp/myfax.tif')
-.then(function(result) {
-  //fax has been recieved by asterisk and written to /tmp/myfax.tif
-});
-```
-
-### context.hangup()
-
-Dispatches the 'HANGUP' AGI command to asterisk.  Does __not__ close the sockets automatically.  _callback_ is called with the result of the dispatch.
-
-```js
-context.hangup()
-.then(function(){
-    //do something
-});
-```
 
 ## Links
 
