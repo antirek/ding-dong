@@ -21,16 +21,18 @@ var context = function(cb) {
     ctx.sent = ctx.sent || [];
     ctx.sent.push(msg);
   };
+
   ctx.once('variables', function(vars) {
     cb(ctx);
   });
+  
   writeVars(stream);
 };
 
 describe('Context', function() {
-  beforeEach(function(done) {
+  beforeEach(function (done) {
     var self = this;
-    context(function(context) {
+    context(function (context) {
       self.context = context;
       done();
     });
