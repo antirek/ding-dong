@@ -417,7 +417,7 @@ describe('Context', function() {
 
   describe('waitForDigit', function () {
     it('sends with default timeout', function() {
-      this.context.waitForDigit();
+      this.context.waitForDigit(5000);
       expect(this.context.sent.join('')).to.eql('WAIT FOR DIGIT 5000\n');
     });
 
@@ -450,7 +450,7 @@ describe('Context', function() {
 
   describe('verbose', function() {
     it('sends correct command', function() {
-      this.context.verbose("good", 2);
+      this.context.verbose('good', 2);
       expect(this.context.sent.join('')).to.eql('VERBOSE "good" 2\n');
     });
   });
