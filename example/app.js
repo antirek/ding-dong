@@ -4,7 +4,7 @@ var handler = function (context) {
     context.onEvent('variables')        
         .then(function (vars) {
             console.log('vars', vars);
-            return context.streamFile('beep', '#');
+            return context.streamFile();
         })
         .then(function (result) {
             return context.setVariable('RECOGNITION_RESULT', 'I\'m your father, Luc');

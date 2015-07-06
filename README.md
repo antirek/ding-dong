@@ -2,7 +2,13 @@
 
 [![Build Status](https://travis-ci.org/antirek/ding-dong.svg?branch=master)](https://travis-ci.org/antirek/ding-dong)
 
-Create AGI server with ding-dong. Use with Asterisk for fast telephony apps. [Fork of node-agi](http://github.com/brianc/node-agi)
+Create AGI server with ding-dong. Use with Asterisk for fast telephony apps. 
+
+[Fork of node-agi](http://github.com/brianc/node-agi)
+
+stable version 0.1.1
+
+unstable version 0.1.2
 
 
 Use ding-dong
