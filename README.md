@@ -8,7 +8,7 @@ Create AGI server with ding-dong. Use with Asterisk for fast telephony apps.
 
 stable version 0.1.1
 
-unstable version 0.1.2
+unstable version 0.1.3
 
 
 Use ding-dong
