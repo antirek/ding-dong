@@ -103,6 +103,24 @@ describe('Context', function() {
         });
         
       });
+
+      it('includes the response value', function(done) {
+        var context = this.context;
+
+        process.nextTick(function() {
+          context.exec('test', 'bang', 'another');
+          context.stream.write('200');
+          context.stream.write(' result=0 (a value)\n\n');
+        });
+
+        context.on('response', function(msg) {
+          expect(msg.code).to.equal(200);
+          expect(msg.result).to.eql('0');
+          expect(msg.value).to.eql('a value');
+          done();
+        });
+
+      });
     });
 
     describe('two commands', function(done) {
