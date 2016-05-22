@@ -2,7 +2,7 @@
   "author": "Sergey Dmitriev <serge.dmitriev@gmail.com>",
   "name": "ding-dong",
   "description": "Write AGI-server quickly! (AGI - Asterisk Gateway Interface)",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "repository": {
     "type": "git",
     "url": "git://github.com/antirek/ding-dong.git"
