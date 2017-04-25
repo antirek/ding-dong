@@ -8,7 +8,7 @@ Create AGI server with ding-dong. Use with Asterisk for fast telephony apps.
 
 stable version 0.1.1
 
-unstable version 0.1.3
+unstable version 0.1.5
 
 
 Use ding-dong
@@ -34,7 +34,8 @@ npm install ding-dong [--save]
 
 ### Write app.js and run it
 
-`````
+`````javascript
+
 var AGIServer = require('ding-dong');
 
 var handler = function (context) {
