@@ -15,7 +15,6 @@
     "node": ">=0.8.0"
   },
   "dependencies": {
-    "q": "^1.4.1",
     "readable-stream": "*"
   },
   "devDependencies": {
