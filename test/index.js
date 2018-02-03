@@ -135,17 +135,15 @@ describe('Context', function() {
         context.exec('test')
           .then(function (res) {
             expect(res.result).to.eql('0');
+            process.nextTick(function() {
+              context.stream.write('200 result=1\n');
+            });
             return context.exec('test 2');
           })
           .then(function (res) {
             expect(res.result).to.eql('1');
             done();
           });
-          
-        process.nextTick(function() {
-          context.stream.write('200 result=1\n');
-        });
-        
       });
     });
   });
