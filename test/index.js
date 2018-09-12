@@ -523,13 +523,14 @@ describe('agi#createServer', function() {
     var net = require('net');
     var server = (new agi()).start(3000);
     expect(server instanceof net.Server).ok();
+
   });
 
   it('invokes callback when a new connection is established', function(done) {
     var server = new agi(function(context) {
       expect(context instanceof Context);
       done();
-    }).start(3000);
+    }).start(3001);
 
     server.emit('connection', new MemoryStream());
   });
