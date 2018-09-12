@@ -15,7 +15,7 @@
     "node": ">=0.8.0"
   },
   "dependencies": {
-    "readable-stream": "*"
+    "readable-stream": "^2.3.0"
   },
   "devDependencies": {
     "expect.js": "*",
