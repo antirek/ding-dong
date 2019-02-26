@@ -12,7 +12,7 @@
     "test": "mocha -R tap --exit"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=6"
   },
   "dependencies": {
     "readable-stream": "^2.3.0"
