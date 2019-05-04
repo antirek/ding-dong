@@ -1,5 +1,5 @@
 const MemoryStream = require('memorystream');
-const Agi = require('./../lib');
+const AgiServer = require('./../lib');
 const expect = require('expect.js');
 const Context = require('./../lib/context');
 const state = require('./../lib/state');
@@ -526,19 +526,22 @@ describe('Context', function() {
   });
 });
 
-describe('agi#createServer', function() {
+describe('AgiServer#createServer', function() {
   it('returns instance of net.Server', function() {
     const net = require('net');
-    const server = (new Agi()).start(3000);
-    expect(server instanceof net.Server).ok();
+    const agiServer = new AgiServer(() => {});
+    expect(agiServer.server instanceof net.Server).ok();
   });
 
   it('invokes callback when a new connection is established', function(done) {
-    const server = new Agi(function(context) {
+    const agiServer = new AgiServer(function(context) {
       expect(context instanceof Context);
       done();
-    }).start(3001);
+    }, {
+      port: 3001,
+    });
+    agiServer.init();
 
-    server.emit('connection', new MemoryStream());
+    agiServer.server.emit('connection', new MemoryStream());
   });
 });
